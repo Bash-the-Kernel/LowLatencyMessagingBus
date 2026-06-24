@@ -1,0 +1,23 @@
+name: low-latency-messaging-bus
+version: '0.1'
+summary: A low latency messaging bus for real-time trading applications.
+description: |
+  A lightweight, high-throughput, low-latency messaging bus using
+  zero-copy shared memory and lock-free ring buffers, optimized
+  for trading workloads.
+
+base: core22
+grade: stable
+confinement: devmode
+
+apps:
+  benchmark:
+    command: build/benchmark
+
+parts:
+  low-latency-messaging-bus:
+    source: .
+    plugin: cmake
+    build-packages:
+      - build-essential
+      - cmake
