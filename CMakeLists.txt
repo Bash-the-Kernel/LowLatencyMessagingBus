@@ -21,6 +21,8 @@ target_link_libraries(benchmark lowlatencybus)
 
 add_executable(test_bus tests/integration_test.cpp)
 target_link_libraries(test_bus lowlatencybus)
-
 enable_testing()
 add_test(NAME IntegrationTest COMMAND test_bus)
+
+install(TARGETS publisher subscriber benchmark test_bus
+        RUNTIME DESTINATION bin)

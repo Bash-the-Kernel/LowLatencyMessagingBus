@@ -12,7 +12,7 @@ confinement: devmode
 
 apps:
   benchmark:
-    command: build/benchmark
+    command: bin/benchmark
 
 parts:
   low-latency-messaging-bus:
@@ -21,3 +21,8 @@ parts:
     build-packages:
       - build-essential
       - cmake
+    override-build: |
+      cmake $SNAPCRAFT_PART_SRC -DCMAKE_BUILD_TYPE=Release
+      cmake --build . -- -j4
+      mkdir -p $SNAPCRAFT_PART_INSTALL/bin
+      cp benchmark $SNAPCRAFT_PART_INSTALL/bin/
